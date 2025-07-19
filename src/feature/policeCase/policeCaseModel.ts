@@ -27,7 +27,7 @@ export async function getRelatedCases(limit: number = 25) {
         }))
       }
     })
-
+    
     return cases
 
   } catch (err) {
