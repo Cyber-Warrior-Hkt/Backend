@@ -22,3 +22,17 @@ export const getSession = (mode: 'read' | 'write' = 'write') =>
 export const closeDriver = async () => {
   await driver.close()
 }
+
+export const convertNeo4jValue = (value: any): any => {
+  if (neo4j.isInt(value)) return value.toNumber()
+  if (Array.isArray(value)) return value.map(convertNeo4jValue)
+  if (value && typeof value === 'object') {
+    const result: any = {}
+    for (const key in value) {
+      result[key] = convertNeo4jValue(value[key])
+    }
+    return result
+  }
+  return value
+}
+
