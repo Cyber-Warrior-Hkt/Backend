@@ -3,10 +3,11 @@ import { DateTime } from "neo4j-driver"
 
 export type Case = {
     case_id: number,
-    victim: string,
+    user_id: number,
+    victim_name: string,
     date: DateTime
     sus_social: string,
-    suspect: string,
+    suspect_name: string,
     sus_tel: number,
     sus_bank_account_number: number,
     link: string
@@ -15,7 +16,7 @@ export type Case = {
 export type Victim = {
   user_id: number;
   name_surname: string;
-  tel: number;
+  victim_tel: number;
   gender: string;
   birth: Date;
   email: string;
@@ -30,20 +31,21 @@ export type Victim = {
 };
 
 export type Suspect = {
-  name_surname: string;
-  bank_account_number: number;
-  phone_number: number;
+  suspect_name: string;
+  sus_bank_account_number: number;
+  sus_tel: number;
+  link: string;
 };
 
 export type Phone = {
-  phone_number: number;
+  sus_tel: number;
   isp: string;
   Owner: string;
   suspect_name: string;
 };
 
 export type BankAccount = {
-  acc_id: number;
+  sus_bank_account_number: number;
   bank: string;
   Owner: string;
   suspect_name: string;
