@@ -1,17 +1,15 @@
 import { getSession } from '../../utils/neo4j'
 import { Path, int as neo4jInt } from 'neo4j-driver'
 
-export async function getRelatedCases(limit: number = 25) {
+export async function getRelatedCases() {
   const session = getSession('read')
 
   try {
     const result = await session.run(
       `
-      MATCH p=()-[:RELATED_TO]->() 
-      RETURN p 
-      LIMIT $limit
+     MATCH p=()-[:MATCHED_ON]->() 
+     RETURN p;
       `,
-      { limit: neo4jInt(Math.floor(limit)) }
     )
 
     
